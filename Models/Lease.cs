@@ -25,6 +25,8 @@ namespace RentingServices.Models
         [Required()]
         public string LeaseDate { get; set; }
 
+        public string Photo { get; set; }
+
         [Required()]
         public int PropertyId { get; set; }
 

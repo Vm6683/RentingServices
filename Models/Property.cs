@@ -14,12 +14,16 @@ namespace RentingServices.Models
         public int PropertyID { get; set; }
 
         [Required()]
+        [MinLength(2)]
         public string Type { get; set;}
         [Required()]
+        [MinLength(2)]
         public string City { get; set; }
         [Required()]
+        [MinLength(2)]
         public string Descripation { get; set; }
         [Required()]
+        [MinLength(2)]
         public string Address { get; set; }
 
     }
