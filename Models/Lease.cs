@@ -9,34 +9,27 @@ namespace RentingServices.Models
 {
     public class Lease
     {
-        [Required()]
-        [Range(1, 99999)]
+
         [Display(Name = "Lease ID")]
         public int LeaseId { get; set; }
-        
-        [Range(1, 99999)]
-        [Required()]
+   
         public double Rent { get; set; }
         
-        [Required()]
 
         public decimal SecurityDeposit { get; set;}
 
-        [Required()]
         public DateTime LeaseDate { get; set; }
 
         public string Photo { get; set; }
 
-        [Required()]
         public int PropertyId { get; set; }
 
-        [Required()]
+
         public string UserId { get; set; }
 
-        [Required()]
         public User User { get; set; }
 
-        [Required()]
+     
         public Property Property { get; set; }
 
 
