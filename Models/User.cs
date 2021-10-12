@@ -19,8 +19,7 @@ namespace RentingServices.Models
         public string Email { get; set; }
         [Required()]
         [MinLength(9)]
-        [Range(1000000000,9999999999)]
-        public int  Phone { get; set; }
+        public string Phone { get; set; }
 
     }
 }

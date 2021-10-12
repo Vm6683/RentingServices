@@ -23,7 +23,7 @@ namespace RentingServices.Models
         public decimal SecurityDeposit { get; set;}
 
         [Required()]
-        public string LeaseDate { get; set; }
+        public DateTime LeaseDate { get; set; }
 
         public string Photo { get; set; }
 
