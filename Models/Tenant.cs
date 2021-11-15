@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace RentingServices.Models
 {
-    public class User
+    public class Tenant
     {
         [Required()]
         [Range(1, 99999)]
-        [Display(Name = "User ID")]
-        public string UserId { get; set; }
+        [Display(Name = "Tenant ID")]
+        public string TenantId { get; set; }
         [Required()]
         [MinLength(2)]
         public string Name { get; set; }

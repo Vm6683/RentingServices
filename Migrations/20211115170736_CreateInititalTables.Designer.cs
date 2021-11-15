@@ -3,20 +3,22 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RentingServices.Data;
 
-namespace RentingServices.Data.Migrations
+namespace RentingServices.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211115170736_CreateInititalTables")]
+    partial class CreateInititalTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.10")
+                .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -241,14 +243,14 @@ namespace RentingServices.Data.Migrations
                     b.Property<decimal>("SecurityDeposit")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("UserId")
+                    b.Property<string>("TenantId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("LeaseId");
 
                     b.HasIndex("PropertyId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("TenantId");
 
                     b.ToTable("Leases");
                 });
@@ -277,9 +279,9 @@ namespace RentingServices.Data.Migrations
                     b.ToTable("Properties");
                 });
 
-            modelBuilder.Entity("RentingServices.Models.User", b =>
+            modelBuilder.Entity("RentingServices.Models.Tenant", b =>
                 {
-                    b.Property<string>("UserId")
+                    b.Property<string>("TenantId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Email")
@@ -294,9 +296,9 @@ namespace RentingServices.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("UserId");
+                    b.HasKey("TenantId");
 
-                    b.ToTable("Users");
+                    b.ToTable("Tenants");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -358,13 +360,13 @@ namespace RentingServices.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("RentingServices.Models.User", "User")
+                    b.HasOne("RentingServices.Models.Tenant", "Tenant")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("TenantId");
 
                     b.Navigation("Property");
 
-                    b.Navigation("User");
+                    b.Navigation("Tenant");
                 });
 #pragma warning restore 612, 618
         }

@@ -25,9 +25,9 @@ namespace RentingServices.Models
         public int PropertyId { get; set; }
 
 
-        public string UserId { get; set; }
+        public string TenantId { get; set; }
 
-        public User User { get; set; }
+        public Tenant Tenant { get; set; }
 
      
         public Property Property { get; set; }

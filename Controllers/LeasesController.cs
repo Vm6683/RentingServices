@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +10,6 @@ using RentingServices.Models;
 
 namespace RentingServices.Controllers
 {
-    [Authorize]
     public class LeasesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -24,7 +22,7 @@ namespace RentingServices.Controllers
         // GET: Leases
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Leases.Include(l => l.Property).Include(l => l.User);
+            var applicationDbContext = _context.Leases.Include(l => l.Property).Include(l => l.Tenant);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -38,7 +36,7 @@ namespace RentingServices.Controllers
 
             var lease = await _context.Leases
                 .Include(l => l.Property)
-                .Include(l => l.User)
+                .Include(l => l.Tenant)
                 .FirstOrDefaultAsync(m => m.LeaseId == id);
             if (lease == null)
             {
@@ -51,8 +49,8 @@ namespace RentingServices.Controllers
         // GET: Leases/Create
         public IActionResult Create()
         {
-            ViewData["PropertyId"] = new SelectList(_context.Properties, "PropertyID", "Address");
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId");
+            ViewData["PropertyId"] = new SelectList(_context.Properties, "PropertyID", "PropertyID");
+            ViewData["TenantId"] = new SelectList(_context.Tenants, "TenantId", "TenantId");
             return View();
         }
 
@@ -61,7 +59,7 @@ namespace RentingServices.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("LeaseId,Rent,SecurityDeposit,LeaseDate,Photo,PropertyId,UserId")] Lease lease)
+        public async Task<IActionResult> Create([Bind("LeaseId,Rent,SecurityDeposit,LeaseDate,Photo,PropertyId,TenantId")] Lease lease)
         {
             if (ModelState.IsValid)
             {
@@ -69,8 +67,8 @@ namespace RentingServices.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PropertyId"] = new SelectList(_context.Properties, "PropertyID", "Address", lease.PropertyId);
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId", lease.UserId);
+            ViewData["PropertyId"] = new SelectList(_context.Properties, "PropertyID", "PropertyID", lease.PropertyId);
+            ViewData["TenantId"] = new SelectList(_context.Tenants, "TenantId", "TenantId", lease.TenantId);
             return View(lease);
         }
 
@@ -87,8 +85,8 @@ namespace RentingServices.Controllers
             {
                 return NotFound();
             }
-            ViewData["PropertyId"] = new SelectList(_context.Properties, "PropertyID", "Address", lease.PropertyId);
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId", lease.UserId);
+            ViewData["PropertyId"] = new SelectList(_context.Properties, "PropertyID", "PropertyID", lease.PropertyId);
+            ViewData["TenantId"] = new SelectList(_context.Tenants, "TenantId", "TenantId", lease.TenantId);
             return View(lease);
         }
 
@@ -97,7 +95,7 @@ namespace RentingServices.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("LeaseId,Rent,SecurityDeposit,LeaseDate,Photo,PropertyId,UserId")] Lease lease)
+        public async Task<IActionResult> Edit(int id, [Bind("LeaseId,Rent,SecurityDeposit,LeaseDate,Photo,PropertyId,TenantId")] Lease lease)
         {
             if (id != lease.LeaseId)
             {
@@ -124,8 +122,8 @@ namespace RentingServices.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PropertyId"] = new SelectList(_context.Properties, "PropertyID", "Address", lease.PropertyId);
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId", lease.UserId);
+            ViewData["PropertyId"] = new SelectList(_context.Properties, "PropertyID", "PropertyID", lease.PropertyId);
+            ViewData["TenantId"] = new SelectList(_context.Tenants, "TenantId", "TenantId", lease.TenantId);
             return View(lease);
         }
 
@@ -139,7 +137,7 @@ namespace RentingServices.Controllers
 
             var lease = await _context.Leases
                 .Include(l => l.Property)
-                .Include(l => l.User)
+                .Include(l => l.Tenant)
                 .FirstOrDefaultAsync(m => m.LeaseId == id);
             if (lease == null)
             {
