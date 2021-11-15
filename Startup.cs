@@ -42,7 +42,7 @@ namespace RentingServices
                 .AddGoogle(options =>
                 {
                     // Accessing Google auth section of appsettings.json
-                    IConfigurationSection googleAuth = Configuration.GetSection("Authentication: Google");
+                    IConfigurationSection googleAuth = Configuration.GetSection("Authentication:Google");
                     // read Google API key values from config section and set as options
                     options.ClientId = googleAuth["ClientId"];
                     options.ClientSecret = googleAuth["ClinetSecret"];
