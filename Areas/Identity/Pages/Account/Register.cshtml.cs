@@ -80,7 +80,7 @@ namespace RentingServices.Areas.Identity.Pages.Account
                 {
                     // Now to add any new users automatically to the role of customer. This will create a new record in AspNetUserRoles.
 
-                    var result1 = _userManager.AddToRoleAsync(user, "Customer");
+                    var result1 = await _userManager.AddToRoleAsync(user, "Customer");
 
                     _logger.LogInformation("User created a new account with password.");
 
@@ -101,7 +101,7 @@ namespace RentingServices.Areas.Identity.Pages.Account
                     }
                     else
                     {
-                        await _signInManager.SignInAsync(user, isPersistent: true);
+                        await _signInManager.SignInAsync(user, isPersistent: false);
                         return LocalRedirect(returnUrl);
                     }
                 }

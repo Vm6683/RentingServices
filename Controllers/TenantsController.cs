@@ -11,7 +11,7 @@ using RentingServices.Models;
 
 namespace RentingServices.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Administrator")]
     public class TenantsController : Controller
     {
         private readonly ApplicationDbContext _context;
