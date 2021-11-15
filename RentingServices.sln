@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentingServiceTests", "..\RentingServiceTests\RentingServiceTests.csproj", "{7DBA0D51-6F61-4203-8624-C6996D80A768}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{F19947D5-4DC4-47BE-97D4-2307BE0D3856}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F19947D5-4DC4-47BE-97D4-2307BE0D3856}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F19947D5-4DC4-47BE-97D4-2307BE0D3856}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DBA0D51-6F61-4203-8624-C6996D80A768}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DBA0D51-6F61-4203-8624-C6996D80A768}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DBA0D51-6F61-4203-8624-C6996D80A768}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DBA0D51-6F61-4203-8624-C6996D80A768}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

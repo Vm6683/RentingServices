@@ -1,0 +1,1 @@
+This Web application is all about Renting house. By this web application landloard can post there properety and Tenant can take it on lease.  
