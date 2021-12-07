@@ -32,7 +32,7 @@ namespace RentingServices.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return View("404");
             }
 
             var @property = await _context.Properties
