@@ -24,7 +24,7 @@ namespace RentingServices.Controllers
         // GET: Properties
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Properties.ToListAsync());
+            return View("Index", await _context.Properties.ToListAsync());
         }
 
         // GET: Properties/Details/5
